@@ -1,0 +1,20 @@
+body {
+    margin-bottom: 100px;
+}
+
+hr {
+    margin-top: 120px;
+    border-color: grey;
+}
+h1 {
+    margin-top: 80px;
+}
+h2 {
+    margin-top: 50px;
+}
+
+input,
+button,
+p {
+    margin-bottom: 30px;
+}
