@@ -49,13 +49,53 @@ fetch("https://pokeapi.co/api/v2/evolution-chain/2")
 // - - - -
 
 // - - - Challenge 2-1: Afficher les noms de 20 Pokémons dans le document HTML
-
+fetch("https://pokeapi.co/api/v2/pokemon?Limit=20")
+    .then((response) => response.json())
+    .then((data)=>{
+        console.log("- - - Challenge 2-1 - - -");
+        const list = document.createElement("ul");
+        data.results.forEach((pokemon)=>{
+            const listItem = document.createElement("li");
+            listItem.textContent = pokemon.name;
+            list.appendChild(listItem);
+        })
+    })
 // - - - Challenge 2-2: Afficher les détails (nom, image) d'un Pokémon spécifique
-
+fetch("https://pokeapi.co/api/v2/pokemon/pikachu")
+    .then((response)=> response.json())
+    .then((data)=>{
+        console.log("- - - Challenge 2-2 - - -");
+        const detailsDiv = document.createElement("div");
+        detailsDiv.innerHTML = `
+        <h3> ${data.name}</h3>
+        <img src="${data.sprites.front_default}" alt="${data.name}">
+        `;
+        document.querySelector("#btasks").appendChild(detailsDiv);
+    })
 // - - - Challenge 2-3:
 // Créer une liste déroulante (utiliser <select> et <option>) de 10 Pokémons obtenu au hasard avec l'api.
 // Puis charger et afficher l'image du Pokémon sélectionné
-
+fetch("https://pokeapi.co/api/v2/pokemon?Limit=100000&offset=0")
+    .then((response)=> response.json())
+    .then((data)=>{
+        console.log("- - - Challenge 2-3 - - -");
+        console.log(data);
+        countN=[]
+        count = data.count;
+        for(i=0; i<10; i++){
+            randomCount = Math.floor(Math.random() * count);
+            urlRandom = "https://pokeapi.co/api/v2/pokemon/" + randomCount;
+            countN.push(urlRandom);
+            countN.forEach((url)=>{
+                fetch(url)
+                    .then ((response)=> response.json())
+                    .then((data)=>{
+                        
+                    })
+            })
+        }
+        console.log(countN)
+    })
 // - - - -
 // - - - - - - - III - Utilisation avancée et gestion des erreurs
 // - - - -
